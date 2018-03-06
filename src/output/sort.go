@@ -5,14 +5,18 @@ import (
 	"encoding/csv"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strconv"
 )
 
 func main() {
-	//grab Arguments
+	//grab Arguments, exit with failure if none
+	if len(os.Args) == 1 {
+		log.Fatal("no files to sort. Please pass in a file location as an argument")
+	}
 	arg := os.Args[1:]
-	fmt.Println(arg)
+	//fmt.Println(arg)
 	if arg[0] == "--help" {
 		fmt.Println("This command is used to sort and join a bunch of CSV data. Accepts file name/location as argument: will take more than one and use them all together")
 	}
@@ -24,6 +28,7 @@ func main() {
 		// open CSV file to read in
 		fi, err := os.Open(file)
 		if err != nil {
+			fmt.Println("Error reading file")
 			panic(err)
 		}
 		defer fi.Close()
@@ -52,7 +57,10 @@ func main() {
 			}
 
 			m[partNo] = m[partNo] + quant
-
 		}
+	}
+
+	for partNo, quant := range m {
+		fmt.Println(partNo, quant)
 	}
 }
