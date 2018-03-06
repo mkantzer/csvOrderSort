@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -15,6 +16,9 @@ func main() {
 	if arg[0] == "--help" {
 		fmt.Println("This command is used to sort and join a bunch of CSV data. Accepts file name/location as argument: will take more than one and use them all together")
 	}
+
+	//create map of strings (part number without leading zeros) to int (quantity)
+	m := map[string]int{}
 
 	for _, file := range arg {
 		// open CSV file to read in
@@ -41,7 +45,14 @@ func main() {
 				panic(err)
 			}
 
-			fmt.Println(record)
+			partNo := record[0]
+			quant, err := strconv.Atoi(record[1])
+			if err != nil {
+				panic(err)
+			}
+
+			m[partNo] = m[partNo] + quant
+
 		}
 	}
 }
