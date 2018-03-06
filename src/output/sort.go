@@ -60,7 +60,26 @@ func main() {
 		}
 	}
 
+	//output map to file
+	//open output file
+	fi, err := os.Create("collapsed.csv")
+	if err != nil {
+		panic(err)
+	}
+	//close and check for returned error:
+	defer fi.Close()
+
+	//create writer:
+	writer := csv.NewWriter(fi)
+	defer writer.Flush()
+
+	//increment over m
 	for partNo, quant := range m {
-		fmt.Println(partNo, quant)
+		data := []string{partNo, strconv.Itoa(quant)}
+		fmt.Println(data)
+		err := writer.Write(data)
+		if err != nil {
+			panic(err)
+		}
 	}
 }

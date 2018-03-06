@@ -10,7 +10,7 @@ import (
 
 func main() {
 	// open output file
-	fi, err := os.Create("../../orderList.csv")
+	fi, err := os.Create("orderList.csv")
 	if err != nil {
 		panic(err)
 	}
@@ -25,7 +25,9 @@ func main() {
 		//generate data
 		partNo := rand.Intn(1000)
 		quantity := rand.Intn(10)
-		data := []string{strconv.Itoa(partNo), strconv.Itoa(quantity)}
+		//set partNo to a string, pad it with zeros to 4 digits:
+		sPartNo := fmt.Sprintf("%04d", partNo)
+		data := []string{sPartNo, strconv.Itoa(quantity)}
 		fmt.Println(data)
 		err := writer.Write(data)
 		if err != nil {
