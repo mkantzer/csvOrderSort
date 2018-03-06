@@ -21,7 +21,7 @@ func main() {
 	writer := csv.NewWriter(fi)
 	defer writer.Flush()
 
-	for i := 0; i < 100000; i++ {
+	for i := 0; i < 10000; i++ {
 		//generate data
 		partNo := rand.Intn(1000)
 		quantity := rand.Intn(10)
