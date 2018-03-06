@@ -1,5 +1,5 @@
 ## csvOrderSort
-project for a friend for handling a simple CSV squish
+project for a friend for handling a simple CSV squish, used as a learning excersize
 
 
 # Generation:
