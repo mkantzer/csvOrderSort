@@ -62,7 +62,7 @@ func main() {
 
 	//output map to file
 	//open output file
-	fi, err := os.Create("collapsed.csv")
+	fi, err := os.Create("testdata/collapsed.csv")
 	if err != nil {
 		panic(err)
 	}

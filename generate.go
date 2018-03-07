@@ -10,7 +10,7 @@ import (
 
 func main() {
 	// open output file
-	fi, err := os.Create("orderList.csv")
+	fi, err := os.Create("testdata/orderList.csv")
 	if err != nil {
 		panic(err)
 	}
